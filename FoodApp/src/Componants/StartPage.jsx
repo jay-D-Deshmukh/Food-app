@@ -12,7 +12,7 @@ function StartPage() {
                 <div className="text-white text-7xl font-extrabold">
                     Zomato
                 </div>
-                <samp className="text-white text-5xl pb-8 ">
+                <samp className="text-white text-4xl pb-8 ">
                 Find the best restaurants,<br/> {" "} cafés and bars in India
                 </samp>
                 <div className="absolute top-0 right-10 p-5">
