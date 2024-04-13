@@ -132,8 +132,8 @@ function Footer() {
                 <FaLinkedin />
               </a>
             </div>
-            <div class="mt-5">
-              <a href="#" class="w-full min-w-xl">
+            <div className="mt-5">
+              <a href="#" className="w-full min-w-xl">
                 <img
                   src="https://mcqmate.com/public/images/icons/playstore.svg"
                   alt="Playstore Button"
