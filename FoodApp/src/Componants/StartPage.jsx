@@ -1,5 +1,7 @@
 import React from 'react';
 import Footer from './Footer';
+import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 function StartPage() {
     return (
@@ -17,9 +19,9 @@ function StartPage() {
                 </samp>
                 <div className="absolute top-0 right-10 p-5">
                     <nav className="flex flex-row items-end gap-14">
-                        <a href="#" className="text-white text-xl">Add restaurant</a>
-                        <a href="#" className="text-white text-xl">Login</a>
-                        <a href="#" className="text-white text-xl">Sign up</a>
+                        <Link to="#" className="text-white text-xl">Add restaurant</Link>
+                        <Link to="/login" className="text-white text-xl">Log in</Link>
+                        <Link to="/register" className="text-white text-xl">Sign up</Link>
                     </nav>
                 </div>
             </div>
