@@ -1,14 +1,83 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link , useNavigate } from "react-router-dom";
+import axios from "axios";
+import Alert from "./Alert";
+
+
 
 function Signup() {
+  const navigate = useNavigate();
+
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+
+  const handleUserNameChange = (e) => {
+    setUserName(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Prepare the data object to send to the server
+    const userData = {
+      userName,
+      email,
+      password,
+    };
+    
+
+    if(userName!="" && email!="" && password !=""){
+
+      axios
+      .post("http://localhost:3000/api/user/register", userData)
+      .then((response) => {
+        if(response.data.success == true){
+          alert("successfully Sign up")
+          navigate("/login");
+
+        }; // handle successful response
+      })
+      .catch((error) => {
+        console.error("Error:", error); // handle error
+      });
+
+      setUserName("");
+      setEmail("");
+      setPassword("");
+
+    }else{
+      alert("All Fields Required")
+    }
+
+    // Make a POST request to your server endpoint
+    
+
+    // Clear the form
+
+  };
+
   return (
+    <div>
+
+       {showAlert && <Alert message="Signup successful!" />}
     <div
+    
       style={{
         backgroundImage: `url('https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png')`,
       }}
       className="min-h-screen bg-cover bg-center flex flex-col justify-center py-12 sm:px-6 lg:px-8"
     >
+      
       <div className="sm:mx-auto sm:w-full sm:max-w-md bg-white bg-opacity-90 rounded-lg shadow-lg px-8 py-8">
         <h2 className="mt-6 text-center text-3xl font-semibold text-gray-900">
           Sign up
@@ -22,7 +91,7 @@ function Signup() {
             Log in
           </Link>
         </p>
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label
               htmlFor="username"
@@ -34,7 +103,9 @@ function Signup() {
               <input
                 id="username"
                 name="username"
-                type="username"
+                type="text"
+                value={userName}
+                onChange={handleUserNameChange}
                 autoComplete="username"
                 required
                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -54,6 +125,8 @@ function Signup() {
                 id="email"
                 name="email"
                 type="email"
+                value={email}
+                onChange={handleEmailChange}
                 autoComplete="email"
                 required
                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -74,6 +147,8 @@ function Signup() {
                 id="password"
                 name="password"
                 type="password"
+                value={password}
+                onChange={handlePasswordChange}
                 autoComplete="current-password"
                 required
                 className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -97,14 +172,13 @@ function Signup() {
                 Remember me
               </label>
             </div>
-
-            
           </div>
 
           <div>
             <button
+              onClick={handleSubmit}
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 "
             >
               Sign up
             </button>
@@ -163,6 +237,9 @@ function Signup() {
         </div>
       </div>
     </div>
+
+    
+  </div>
   );
 }
 
