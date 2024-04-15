@@ -1,12 +1,14 @@
 
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Home from "./Home";
 
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -24,19 +26,27 @@ function Login() {
       email,
       password,
     };
-    console.log(userData);
+    
+    if(email != "" && password != ""){
 
-    // Make a POST request to your server endpoint
-    axios
+      axios
       .post("http://localhost:3000/api/user/login", userData)
       .then((response) => {
         if (response.data.status == true) {
           alert("successfully Log in");
+          // Redirect to the home page
+          navigate("/home");
+        } else {
+          alert("Invalid Credentials");
         } // handle successful response
       })
       .catch((error) => {
         console.error("Error:", error); // handle error
       });
+
+    }
+    // Make a POST request to your server endpoint
+   
 
     // Clear the form
 

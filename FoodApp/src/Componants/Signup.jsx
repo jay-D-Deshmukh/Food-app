@@ -45,6 +45,8 @@ function Signup() {
           alert("successfully Sign up")
           navigate("/login");
 
+        }else{
+          alert("Invalid Cridentials")
         }; // handle successful response
       })
       .catch((error) => {

@@ -1,9 +1,12 @@
 import React from 'react';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
+
 import { Navigate } from 'react-router-dom';
 
+
 function StartPage() {
+
     return (
         <div>
         <div className="relative h-screen flex items-center justify-center">
