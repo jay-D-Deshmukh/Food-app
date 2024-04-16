@@ -4,8 +4,7 @@ import {
   FaInstagram,
   FaTwitter,
   FaYoutube,
-  FaLinkedin,
-} from "react-icons/fa";
+  FaLinkedin,} from "react-icons/fa";
 
 function Footer() {
   return (
@@ -137,7 +136,7 @@ function Footer() {
                 <img
                   src="https://mcqmate.com/public/images/icons/playstore.svg"
                   alt="Playstore Button"
-                  class="h-14"
+                  className="h-14"
                 />
               </a>
               
@@ -146,15 +145,15 @@ function Footer() {
                 <img
                   src="https://www.svgrepo.com/show/303128/download-on-the-app-store-apple-logo.svg"
                   alt="Youtube Button"
-                  class="h-30"
+                  className="h-30"
                 />
              
             </div>
           </div>
         </div>
       </div>
-      <div class=" p-64 flex  flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row">
-        <p class="text-sm text-gray-600">
+      <div className=" p-64 flex  flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row">
+        <p className="text-sm text-gray-600">
         By continuing past this page, you agree to our Terms of Service, Cookie Policy, Privacy Policy and Content Policies. All trademarks are properties of their respective owners. 2008-2024 © Zomato™ Ltd. All rights reserved.
         </p>
         
