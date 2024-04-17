@@ -3,6 +3,7 @@ import StartPage from "./Componants/StartPage"
 import Login from './Componants/Login';
 import Signup from './Componants/Signup';
 import Home from './Componants/Home';
+import Fooditem from './Componants/Fooditem';
 
 function App() {
   
@@ -11,9 +12,10 @@ function App() {
     <BrowserRouter>
     <Routes>
      <Route exact path="/" element={<StartPage/>}/>
-     <Route exact path="/login" element={<Login/>}/>
-     <Route exact path="/register" element={<Signup/>}/>
-     <Route exact path="/home" element={<Home/>}/>
+     <Route  path="/login" element={<Login/>}/>
+     <Route  path="/register" element={<Signup/>}/>
+     <Route  path="/home" element={<Home/>}/>
+     <Route path='/Fooditem' element={<Fooditem/>}/>
      </Routes>
     </BrowserRouter>
   )

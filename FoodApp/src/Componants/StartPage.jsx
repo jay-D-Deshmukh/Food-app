@@ -60,11 +60,17 @@ function StartPage() {
             <br /> just like you, to find your next great meal
           </div>
         </div>
-       
+      </div>
+      <div className="flex flex-wrap justify-center mt-10">
+        {cityData.map((city, index) => (
+          <button key={index} className=" text-xl font-normal text-gray-700 m-2 px-6 py-5 p-16 border rounded-lg hover:shadow-md">
+            {city.name}
+          </button>
+        ))}
       </div>
       <div>
-      <Footer />
-    </div>
+        <Footer />
+      </div>
     </div>
   );
 }
