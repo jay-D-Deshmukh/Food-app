@@ -3,6 +3,7 @@ import cors from "cors";
 import userRoutes from './routes/user.routes.js'
 import cityRoutes from './routes/city.routes.js'
 import  DbConnection  from "./config/connectTodataBase.js";
+import  foodItemRoutes from "./routes/fooditem.routes.js"
 
 import { config } from "dotenv";
 config();
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use("/api/user",userRoutes)
 app.use("/api",cityRoutes)
+app.use("/api",foodItemRoutes)
 
 app.all("*",(req,res)=>{
    res.send("page not fount")
