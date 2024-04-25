@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
+
 import axios from "axios";
 
 function Fooditem() {
@@ -54,21 +55,26 @@ function Fooditem() {
       </nav>
       <div className="flex flex-wrap gap-14 mt-12 mx-6">
         {fooddata.map((item,key)=>{
-       return <div id={key} className=" max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
+       return <div id={key} className=" max-w-xs bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl">
+        
           <img
+          
             className="w-full h-56 object-cover object-center"
             src={item.image}
             
             alt={""}
+            
           />
           <div className="p-4">
             <h2 className="text-gray-900 font-semibold text-lg">{item.name}</h2>
             <p className="mt-2 text-gray-600">{item.description}</p>
             <div className="mt-3 flex items-center justify-between">
               <span className="text-gray-900 font-bold">$ {item.price}</span>
+              
               <button className="px-3 py-1 bg-gray-800 text-white text-xs font-bold uppercase rounded">
                 Add to Cart
               </button>
+              
             </div>
           </div>
         </div>
