@@ -4,6 +4,8 @@ import Login from './Componants/Login';
 import Signup from './Componants/Signup';
 import Home from './Componants/Home';
 import Fooditem from './Componants/Fooditem';
+import Cart from './Componants/Cart';
+import Wishlist from './Componants/Wishlist';
 
 function App() {
   
@@ -16,6 +18,8 @@ function App() {
      <Route  path="/register" element={<Signup/>}/>
      <Route  path="/home" element={<Home/>}/>
      <Route path='/Fooditem' element={<Fooditem/>}/>
+     <Route path='/cart' element={<Cart/>}/>
+     <Route path='/wishlist' element={<Wishlist/>}/>
      </Routes>
     </BrowserRouter>
   )

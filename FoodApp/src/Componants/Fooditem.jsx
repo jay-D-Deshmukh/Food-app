@@ -5,6 +5,7 @@ import { addItem } from "../Cartsclice/cartSclice";
 import { addTOWishlist } from "../WishlistSlice/wishListslice";
 import { useSelector } from "react-redux";
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 
@@ -70,14 +71,18 @@ function Fooditem() {
                     <h1 className="text-white font-bold">{cart.item.length}</h1>
                   </div>
                 )}
+                <Link to="/cart">
                 <FaShoppingCart className="h-9 w-9 text-black mr-10 cursor-pointer" />
+                </Link>
               </div>
               {wishlist.item.length > 0 && (
                 <div className="absolute h-6 w-6 bg-black rounded-full flex justify-center  right-16 top-0">
                   <h1 className="text-white">{wishlist.item.length}</h1>
                 </div>
               )}
+              <Link to="/wishlist">
               <FaHeart className="h-9 w-9 text-pink-700 cursor-pointer mr-10" />
+              </Link>
             </div>
           </div>
         </div>
