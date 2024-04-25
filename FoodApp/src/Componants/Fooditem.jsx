@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addItem } from "../Cartsclice/cartSclice";
 
 import axios from "axios";
 
 function Fooditem() {
+
   const [fooddata, setitem] = useState([]);
+  const dispatch = useDispatch();
 
   const fetchFoodItem = async () => {
     try {
@@ -21,6 +25,11 @@ function Fooditem() {
     fetchFoodItem()
   },[])
   console.log(fooddata)
+
+  const addTocart =(item)=>{
+     // dispatch add acion to cart
+     dispatch(addItem(item))
+  }
   
   return (
     <div>
@@ -55,7 +64,7 @@ function Fooditem() {
       </nav>
       <div className="flex flex-wrap gap-14 mt-12 mx-6">
         {fooddata.map((item,key)=>{
-       return <div id={key} className=" max-w-xs bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl">
+       return <div key={item._id} className=" max-w-xs bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl">
         
           <img
           
@@ -71,7 +80,9 @@ function Fooditem() {
             <div className="mt-3 flex items-center justify-between">
               <span className="text-gray-900 font-bold">$ {item.price}</span>
               
-              <button className="px-3 py-1 bg-gray-800 text-white text-xs font-bold uppercase rounded">
+              <button
+              onClick={()=>addTocart(item)}
+               className="px-3 py-1 bg-gray-800 text-white text-xs font-bold uppercase rounded dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                 Add to Cart
               </button>
               
