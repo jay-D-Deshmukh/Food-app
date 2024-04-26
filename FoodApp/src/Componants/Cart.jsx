@@ -1,50 +1,59 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { removeItem } from "../Cartsclice/cartSclice";
 
 function Cart() {
-    const cartdata = useSelector((state)=>state.cart.item)
-    console.log(cartdata);
+  const dispatch = useDispatch();
+  const cartdata = useSelector((state) => state.cart.item);
+  console.log(cartdata);
+
+  const removeFromCart = (id) => {
+    dispatch(removeItem(id));
+    console.log(id);
+  };
+
+  // Calculate total price
+  const totalPrice = cartdata.reduce((acc, item) => acc + item.price, 0);
+
+  // Check if totalPrice is a finite number before formatting
+  const formattedTotalPrice = Number.isFinite(totalPrice) ? totalPrice.toFixed(2) : totalPrice;
+
   return (
-    <div>
-            <nav className="bg-white">
-        <div className="w-full mx-auto px-4 shadow-md p-5">
-          <div className="flex justify-between items-center ">
-            <div className="flex-shrink-0">
-              <a href="#" className="text-black font-extrabold text-4xl">
-                Zomato
-              </a>
-            </div>
-            <div className="hidden md:flex flex-1 justify-center"></div>
-           
-           
-          </div>
-        </div>
-      </nav>
-      <div>
-      <h2>Shopping Cart</h2>
-      {cartdata.length === 0 ? (
-        <p>Your cart is empty</p>
-      ) : (
-        <ul>
+    <div className="bg-white pt-20">
+      <div className="w-full mx-auto bg-white p-8 rounded shadow-md">
+        <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
+
+        <div className="space-y-4">
           {cartdata.map((item) => (
-            <li key={item.id}>
+            <div key={item._id} className="flex justify-between items-center">
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-36 h-36 object-cover rounded"
+              />
               <div>
-                <img src={item.image} alt={item.name} />
+                <p className="font-bold">{item.name}</p>
+                <p className="text-gray-500">Price: {item.price}</p>
               </div>
-              <div>
-                <h3>{item.name}</h3>
-                <p>${item.price}</p>
-                <button onClick={() => handleRemoveFromCart(item.id)}>
-                  Remove
-                </button>
-              </div>
-            </li>
+              <button
+                onClick={() => removeFromCart(item._id)}
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+              >
+                Remove item
+              </button>
+            </div>
           ))}
-        </ul>
-      )}
+        </div>
+
+        <div className="mt-8 flex items-center justify-between">
+          <p className="text-xl font-bold">Total Price: ${formattedTotalPrice}</p>
+          <button className="bg-blue-500 text-white px-4 py-2 rounded">
+            Checkout
+          </button>
+        </div>
+      </div>
     </div>
-    </div>
-  )
+  );
 }
 
-export default Cart
+export default Cart;
